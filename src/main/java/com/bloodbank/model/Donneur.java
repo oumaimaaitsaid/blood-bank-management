@@ -47,5 +47,18 @@ public class Donneur extends Personne{
 
 
 
+    // ---- Getters & Setters ----
+    public double getPoids() { return poids; }
+    public void setPoids(double poids) { this.poids = poids; }
+
+    public Disponibilite getStatus() { return status; }
+    public void setStatus(Disponibilite status) { this.status = status; }
+
+    public LocalDate getDateDernierDon() { return dateDernierDon; }
+    public void setDateDernierDon(LocalDate dateDernierDon) { this.dateDernierDon = dateDernierDon; }
+
+    public List<MedicalCondition> getMedicalConditions() { return medicalConditions; }
+    public void setMedicalConditions(List<MedicalCondition> medicalConditions) { this.medicalConditions = medicalConditions; }
+
 
 }
