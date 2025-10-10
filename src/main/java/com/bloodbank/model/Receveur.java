@@ -2,14 +2,11 @@ package com.bloodbank.model;
 
 import com.bloodbank.model.enums.EtatReceveur;
 import com.bloodbank.model.enums.NiveauBesoin;
-
-import javax.persistence.CascadeType;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Receveur {
 
 

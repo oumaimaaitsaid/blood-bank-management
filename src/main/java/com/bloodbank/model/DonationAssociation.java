@@ -6,6 +6,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.*;
 import java.time.LocalDate;
 
+
+@Entity
 public class DonationAssociation {
 
     @Id

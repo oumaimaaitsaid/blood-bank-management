@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
 
+@Entity
 public class Donneur extends Personne{
 
    private double poids;
