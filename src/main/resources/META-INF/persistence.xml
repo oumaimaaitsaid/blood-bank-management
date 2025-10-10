@@ -16,7 +16,7 @@
         <properties>
             <!-- JDBC settings -->
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5433/banque_de_sang"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5433/bank_blood"/>
             <property name="javax.persistence.jdbc.user" value="postgres"/>
             <property name="javax.persistence.jdbc.password" value="admin"/>
 
