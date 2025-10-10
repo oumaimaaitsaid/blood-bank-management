@@ -27,6 +27,23 @@ public class Donneur extends Personne{
     private List<MedicalCondition> medicalConditions;
 
 
+    //-----Méthodes Utils----
+
+
+    public boolean isEligible(){
+        int age =Period.between(this.getDateNaissance(), LocalDate.now()).getYears();
+        if(age<18 || age > 65 || getPoids()<50) return false;
+
+        return (medicalConditions == null || medicalConditions.isEmpty());
+    }
+
+    public int calculerAge (){
+        return Period.between(this.getDateNaissance(), LocalDate.now()).getYears();
+    }
+
+    public LocalDate getProchaineDateDon(){
+        return (dateDernierDon != null) ?dateDernierDon.plusMonths(1) : null;
+    }
 
 
 
