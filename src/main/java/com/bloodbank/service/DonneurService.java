@@ -31,4 +31,10 @@ public class DonneurService{
     public List<Donneur> listerDonneurs(){
         return donneurDAO.findAll();
     }
+
+    public Donneur trouverById(int id) {
+        return donneurDAO.find(id);
+    }
 }
+
+
