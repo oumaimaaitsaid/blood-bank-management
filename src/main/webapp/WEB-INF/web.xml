@@ -7,39 +7,13 @@
 
     <!-- =================== Servlets =================== -->
 
-    <!-- Servlet pour Donneur -->
-    <servlet>
-        <servlet-name>DonneurServlet</servlet-name>
-        <servlet-class>com.bloodbank.servlet.DonneurServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>DonneurServlet</servlet-name>
-        <url-pattern>/donneur</url-pattern>
-    </servlet-mapping>
 
-    <!-- Servlet pour Receveur -->
-    <servlet>
-        <servlet-name>ReceveurServlet</servlet-name>
-        <servlet-class>com.bloodbank.servlet.ReceveurServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ReceveurServlet</servlet-name>
-        <url-pattern>/receveur</url-pattern>
-    </servlet-mapping>
 
-    <!-- Servlet pour Gestion du Matching Donneur/Receveur -->
-    <servlet>
-        <servlet-name>MatchingServlet</servlet-name>
-        <servlet-class>com.bloodbank.servlet.MatchingServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>MatchingServlet</servlet-name>
-        <url-pattern>/matching</url-pattern>
-    </servlet-mapping>
+
 
     <!-- =================== Page d'accueil =================== -->
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>donneur-list.jsp</welcome-file>
     </welcome-file-list>
 
 </web-app>

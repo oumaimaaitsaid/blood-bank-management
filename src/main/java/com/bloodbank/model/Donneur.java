@@ -62,4 +62,5 @@ public class Donneur extends Personne{
     public void setMedicalConditions(List<MedicalCondition> medicalConditions) { this.medicalConditions = medicalConditions; }
 
 
+
 }

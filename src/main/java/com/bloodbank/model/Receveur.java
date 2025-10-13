@@ -1,13 +1,14 @@
 package com.bloodbank.model;
 
 import com.bloodbank.model.enums.EtatReceveur;
+import com.bloodbank.model.enums.GroupeSanguin;
 import com.bloodbank.model.enums.NiveauBesoin;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Receveur {
+public class Receveur extends  Personne {
 
 
     @Enumerated(EnumType.STRING)
@@ -56,6 +57,7 @@ public class Receveur {
 
     public List<DonationAssociation> getAssociations() { return associations; }
     public void setAssociations(List<DonationAssociation> associations) { this.associations = associations; }
+
 
 
 }

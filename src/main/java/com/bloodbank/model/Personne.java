@@ -12,7 +12,6 @@ public abstract class Personne {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private int id;
 
 

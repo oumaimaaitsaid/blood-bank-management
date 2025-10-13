@@ -1,4 +1,4 @@
-package com.bloodbank.web;
+package com.bloodbank.servlet;
 
 public class AssociationServlet {
 }
