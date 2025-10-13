@@ -42,5 +42,14 @@ public abstract class BaseDAO<T> {
     }
 
 
+    public List<T> findAll(){
+        EntityManager em = JpaUtil.getEntityManager();
+        try{
+            return em.createQuery("from"+ entityClass.getSimpleName(), entityClass).getResultList();
+        }finally {
+            em.close();
+        }
+    }
+
 
 }
