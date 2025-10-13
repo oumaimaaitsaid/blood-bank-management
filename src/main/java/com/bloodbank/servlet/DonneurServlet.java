@@ -38,6 +38,23 @@ public class DonneurServlet extends HttpServlet {
     }
 
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        Donneur d = new Donneur();
+
+        d.setNom(request.getParameter("nom"));
+        d.setPrenom(request.getParameter("prenom"));
+        d.setCin(request.getParameter("cin"));
+        d.setTelephone(request.getParameter("telephone"));
+        d.setSexe(Sexe.valueOf(request.getParameter("sexe")));
+        d.setPoids(Double.parseDouble(request.getParameter("poids")));
+        d.setDateNaissance(LocalDate.parse(request.getParameter("dateNaissance"), formatter));
+
+        service.ajouterDonneur(d);
+        response.sendRedirect("donneur?action=list");
+    }
 
 }
