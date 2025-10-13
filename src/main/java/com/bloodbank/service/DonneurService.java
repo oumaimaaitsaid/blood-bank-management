@@ -8,6 +8,7 @@ import com.bloodbank.model.enums.Disponibilite;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 
 public class DonneurService{
     private DonneurDAO donneurDAO = new DonneurDAO();
@@ -25,5 +26,9 @@ public class DonneurService{
             d.setStatus(Disponibilite.DISPONIBLE);
         }
         donneurDAO.save(d);
+    }
+
+    public List<Donneur> listerDonneurs(){
+        return donneurDAO.findAll();
     }
 }
