@@ -5,24 +5,25 @@
                                  http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
              version="2.2">
 
-    <persistence-unit name="my-persistence-unit" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="banqueSangPU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>com.bloodbank.model.Personne</class>
         <class>com.bloodbank.model.Donneur</class>
         <class>com.bloodbank.model.Receveur</class>
-        <class>com.bloodbank.model.MedicalCondition/class>
+
         <class>com.bloodbank.model.DonationAssociation</class>
 
         <properties>
             <!-- JDBC settings -->
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5433/bank_blood"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5433/bank_sang"/>
             <property name="javax.persistence.jdbc.user" value="postgres"/>
             <property name="javax.persistence.jdbc.password" value="admin"/>
 
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
             <!-- Hibernate settings -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
         </properties>

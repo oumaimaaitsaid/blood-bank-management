@@ -7,12 +7,11 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @MappedSuperclass
-public class Personne {
+public abstract class Personne {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private int id;
 
 
