@@ -32,7 +32,14 @@ public abstract class BaseDAO<T> {
 
 
 
-
+    public T find(int id) {
+        EntityManager em =JpaUtil.getEntityManager();
+        try{
+            return em.find(entityClass, id);
+        } finally {
+            em.close();
+        }
+    }
 
 
 
