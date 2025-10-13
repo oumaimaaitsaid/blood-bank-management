@@ -35,6 +35,11 @@ public class DonneurService{
     public Donneur trouverById(int id) {
         return donneurDAO.find(id);
     }
+
+    public void supprimer(int id) {
+        Donneur d = donneurDAO.find(id);
+        if (d != null) donneurDAO.delete(d);
+    }
 }
 
 
