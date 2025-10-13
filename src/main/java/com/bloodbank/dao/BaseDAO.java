@@ -51,5 +51,19 @@ public abstract class BaseDAO<T> {
         }
     }
 
-
+    public void delete(int id) {
+        EntityManager em = JpaUtil.getEntityManager();
+        EntityTransaction tr = em.getTransaction();
+        try {
+            tr.begin();
+            T e = em.find(entityClass, id);
+            if (e != null) em.remove(e);
+            tr.commit();
+        } catch (Exception e) {
+            if (tr.isActive()) tr.rollback();
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+    }
 }
