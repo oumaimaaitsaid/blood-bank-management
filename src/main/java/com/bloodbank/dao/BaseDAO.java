@@ -1,5 +1,6 @@
 package com.bloodbank.dao;
 
+import com.bloodbank.model.Donneur;
 import com.bloodbank.util.JpaUtil;
 
 import javax.persistence.*;
@@ -51,7 +52,7 @@ public abstract class BaseDAO<T> {
         }
     }
 
-    public void delete(int id) {
+    public void delete(Donneur id) {
         EntityManager em = JpaUtil.getEntityManager();
         EntityTransaction tr = em.getTransaction();
         try {
