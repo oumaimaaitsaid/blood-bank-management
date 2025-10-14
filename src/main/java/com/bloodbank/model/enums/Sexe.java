@@ -1,5 +1,5 @@
 package com.bloodbank.model.enums;
 
 public enum Sexe {
-    M,F
+    H,F
 }

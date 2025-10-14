@@ -10,6 +10,8 @@
         <class>com.bloodbank.model.Personne</class>
         <class>com.bloodbank.model.Donneur</class>
         <class>com.bloodbank.model.Receveur</class>
+        <class>com.bloodbank.model.MedicalCondition</class>
+        <class>com.bloodbank.model.DonationAssociation</class>
 
         <class>com.bloodbank.model.DonationAssociation</class>
 
@@ -20,7 +22,7 @@
             <property name="javax.persistence.jdbc.user" value="postgres"/>
             <property name="javax.persistence.jdbc.password" value="admin"/>
 
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
             <!-- Hibernate settings -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
 
