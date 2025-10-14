@@ -35,4 +35,10 @@ public class ReceveurService {
     public List<Receveur> listerReceveurs(){
         return receveurDAO.findAll();
     }
+
+    //trouver receveur par son ID
+
+    public Receveur trouverById(int id){
+        return receveurDAO.find(id);
+    }
 }
