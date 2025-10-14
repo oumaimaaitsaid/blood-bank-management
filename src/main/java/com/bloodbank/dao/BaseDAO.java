@@ -53,7 +53,7 @@ public abstract class BaseDAO<T> {
         }
     }
 
-    public void delete(Donneur id) {
+    public void delete(T id) {
         EntityManager em = JpaUtil.getEntityManager();
         EntityTransaction tr = em.getTransaction();
         try {
