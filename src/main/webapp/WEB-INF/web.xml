@@ -15,6 +15,14 @@
         <url-pattern>/donneur</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ReceveurServlet</servlet-name>
+        <servlet-class>com.bloodbank.servlet.ReceveurServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReceveurServlet</servlet-name>
+        <url-pattern>/receveur</url-pattern>
+    </servlet-mapping>
 
 
 
