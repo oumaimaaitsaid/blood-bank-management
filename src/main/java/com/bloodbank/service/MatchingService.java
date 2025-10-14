@@ -30,4 +30,35 @@ public class MatchingService {
 
        }
     }
+
+    //automatiquelly
+
+    public void effectuerMatching(){
+        List<Donneur> donneurs =donneurDAO.findAll();
+        List<Receveur> receveurs =receveurDAO.findAll();
+
+        for(Receveur r : receveurs){
+            if(r.getEtat() == EtatReceveur.SATISFAIT) continue;
+            for(Donneur d : donneurs){
+                if(d.getStatus() ==Disponibilite.DISPONIBLE && estCompatible(d.getGroupe(),r.getGroupe())){
+
+                    //creation d association
+
+                    DonationAssociation assoc =new DonationAssociation();
+                    assoc.setDonneur(d);
+                    assoc.setReceveur(r);
+                    assoc.setDateAssociation(LocalDate.now());
+                    assoc.setStatut("CONFIRMÉ");
+                    associationDAO.save(assoc);
+                    d.setStatus(Disponibilite.NON_DISPONIBLE);
+                    r.ajouterPoche();
+
+                    donneurDAO.save(d);
+                    receveurDAO.save(r);
+
+                    break;
+                }
+            }
+        }
+    }
 }
