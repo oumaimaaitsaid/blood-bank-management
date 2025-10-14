@@ -38,4 +38,24 @@ public class ReceveurServlet  extends  HttpServlet{
             rd.forward(request, response);
         }
     }
+
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws  ServletException,IOException{
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        Receveur r = new Receveur();
+        r.setNom(request.getParameter("nom"));
+        r.setPrenom(request.getParameter("prenom"));
+        r.setCin(request.getParameter("cin"));
+        r.setTelephone(request.getParameter("telephone"));
+        r.setSexe(Sexe.valueOf(request.getParameter("sexe")));
+        r.setDateNaissance(LocalDate.parse(request.getParameter("dateNaissance"), formatter));
+        r.setGroupe(GroupeSanguin.valueOf(request.getParameter("groupeSanguin")));
+        r.setBesoin(NiveauBesoin.valueOf(request.getParameter("besoin")));
+
+        service.ajouterReceveur(r);
+        response.sendRedirect("receveur?action=list");
+    }
 }
