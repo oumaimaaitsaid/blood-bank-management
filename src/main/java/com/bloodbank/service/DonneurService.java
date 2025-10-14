@@ -2,33 +2,40 @@ package com.bloodbank.service;
 
 
 import com.bloodbank.dao.DonneurDAO;
+import com.bloodbank.dao.MedicalConditionDAO;
 import com.bloodbank.model.Donneur;
-import com.bloodbank.model.Personne;
+import com.bloodbank.model.MedicalCondition;
 import com.bloodbank.model.enums.Disponibilite;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.List;
 
-public class DonneurService{
+public class DonneurService {
     private DonneurDAO donneurDAO = new DonneurDAO();
-    private boolean isEligible(Donneur d){
-        int age = Period.between(d.getDateNaissance() , LocalDate.now()).getYears();
-        boolean ageOK = age >=18 && age >=65;
-        boolean poidsOK = d.getPoids() >= 50;
-        return ageOK && poidsOK;
-    }
+    private MedicalConditionDAO conditionDAO = new MedicalConditionDAO();
 
-    public void ajouterDonneur(Donneur d){
-        if(!isEligible(d)){
+    public void ajouterDonneur(Donneur d, List<Integer> conditionsIds) {
+        List<MedicalCondition> conditions = new ArrayList<>();
+        for (Integer id : conditionsIds) {
+            MedicalCondition mc = conditionDAO.find(id);
+            if (mc != null) conditions.add(mc);
+        }
+        d.setMedicalConditions(conditions);
+
+
+        if (!d.isEligible()) {
             d.setStatus(Disponibilite.NON_ELIGIBLE);
         } else {
-            d.setStatus(Disponibilite.DISPONIBLE);
+            d.mettreAJourDisponibilite();
         }
+
         donneurDAO.save(d);
     }
 
-    public List<Donneur> listerDonneurs(){
+
+    public List<Donneur> listerDonneurs() {
         return donneurDAO.findAll();
     }
 

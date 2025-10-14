@@ -13,7 +13,7 @@ public class MedicalCondition {
     private String name;
 
 
-
+    public MedicalCondition() {}
     public MedicalCondition(String name) {
         this.name = name;
     }

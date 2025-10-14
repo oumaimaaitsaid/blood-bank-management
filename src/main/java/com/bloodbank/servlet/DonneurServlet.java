@@ -1,7 +1,9 @@
 package  com.bloodbank.servlet;
 
 
+import com.bloodbank.dao.MedicalConditionDAO;
 import com.bloodbank.model.Donneur;
+import com.bloodbank.model.enums.GroupeSanguin;
 import com.bloodbank.model.enums.Sexe;
 import com.bloodbank.service.DonneurService;
 
@@ -10,6 +12,9 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class DonneurServlet extends HttpServlet {
 
@@ -31,6 +36,9 @@ public class DonneurServlet extends HttpServlet {
             service.supprimer(id);
             response.sendRedirect("donneur?action=list");
         } else {
+            request.setAttribute("groupes", Arrays.asList(GroupeSanguin.values()));
+            request.setAttribute("conditions", new MedicalConditionDAO().findAll());
+
             RequestDispatcher rd = request.getRequestDispatcher("donneur-form.jsp");
             rd.forward(request ,response);
         }
@@ -52,8 +60,14 @@ public class DonneurServlet extends HttpServlet {
         d.setSexe(Sexe.valueOf(request.getParameter("sexe")));
         d.setPoids(Double.parseDouble(request.getParameter("poids")));
         d.setDateNaissance(LocalDate.parse(request.getParameter("dateNaissance"), formatter));
+        d.setGroupe(GroupeSanguin.valueOf(request.getParameter("groupeSanguin")));
+        String[] conditions = request.getParameterValues("conditions");
+        List<Integer> ids = new ArrayList<>();
+        if (conditions != null) {
+            for (String id : conditions) ids.add(Integer.parseInt(id));
+        }
 
-        service.ajouterDonneur(d);
+        service.ajouterDonneur(d,ids);
         response.sendRedirect("donneur?action=list");
     }
 
