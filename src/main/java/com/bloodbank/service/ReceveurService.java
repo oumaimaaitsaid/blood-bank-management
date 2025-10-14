@@ -29,4 +29,10 @@ public class ReceveurService {
         r.setPochesRequises(0);
         receveurDAO.save(r);
     }
+
+    //liste de tous les receveurs
+
+    public List<Receveur> listerReceveurs(){
+        return receveurDAO.findAll();
+    }
 }
