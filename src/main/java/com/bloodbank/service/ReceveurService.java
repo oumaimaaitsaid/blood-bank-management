@@ -41,4 +41,11 @@ public class ReceveurService {
     public Receveur trouverById(int id){
         return receveurDAO.find(id);
     }
+
+    // supprimer Receveur
+
+    public void supprimer(int id){
+        Receveur r =receveurDAO.find(id);
+        if(r!=null) receveurDAO.delete(r);
+    }
 }
