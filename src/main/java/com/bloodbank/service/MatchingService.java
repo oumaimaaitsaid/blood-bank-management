@@ -53,8 +53,9 @@ public class MatchingService {
                     d.setStatus(Disponibilite.NON_DISPONIBLE);
                     r.ajouterPoche();
 
-                    donneurDAO.save(d);
-                    receveurDAO.save(r);
+
+                    donneurDAO.update(d);
+                    receveurDAO.update(r);
 
                     break;
                 }

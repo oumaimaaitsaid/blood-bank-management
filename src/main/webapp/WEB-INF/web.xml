@@ -25,6 +25,15 @@
     </servlet-mapping>
 
 
+    <servlet>
+        <servlet-name>MatchingServlet</servlet-name>
+        <servlet-class>com.bloodbank.servlet.MatchingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MatchingServlet</servlet-name>
+        <url-pattern>/matching</url-pattern>
+    </servlet-mapping>
+
 
     <!-- =================== Page d'accueil =================== -->
     <welcome-file-list>
