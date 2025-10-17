@@ -53,6 +53,29 @@ public abstract class BaseDAO<T> {
         }
     }
 
+
+    //update Entities
+
+
+    public void update (T entity){
+        EntityManager em = JpaUtil.getEntityManager();
+        EntityTransaction tr = em.getTransaction();
+        try{
+            tr.begin();
+            em.merge(entity);
+            tr.commit();
+
+        }
+        catch(Exception e){
+            if(tr.isActive() ) tr.rollback();
+            e.printStackTrace();
+
+        }
+        finally{
+            em.close();
+        }
+
+    }
     public void delete(T id) {
         EntityManager em = JpaUtil.getEntityManager();
         EntityTransaction tr = em.getTransaction();
