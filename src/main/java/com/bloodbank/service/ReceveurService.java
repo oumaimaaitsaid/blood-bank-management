@@ -26,7 +26,6 @@ public class ReceveurService {
                 break;
         }
         r.setEtat(EtatReceveur.EN_ATTENTE);
-        r.setPochesRequises(0);
         receveurDAO.save(r);
     }
 

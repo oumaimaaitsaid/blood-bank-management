@@ -37,9 +37,9 @@ public class Receveur extends  Personne {
     public void ajouterPoche(){
 
         this.pochesRecues++;
+         this.pochesRequises--;
         if(isSatisfait()) this.etat=EtatReceveur.SATISFAIT;
     }
-
 
 
     // ---- Getters & Setters ----
