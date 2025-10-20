@@ -67,6 +67,10 @@
 
         <!-- Formulaire -->
         <form action="donneur" method="post" class="p-6 space-y-6">
+         <input type="hidden" name="action" value="${empty donneur ? 'add' : 'update'}">
+            <c:if test="${not empty donneur}">
+                <input type="hidden" name="id" value="${donneur.id}">
+            </c:if>
             <!-- Section Informations de base -->
             <div class="grid md:grid-cols-2 gap-6">
                 <!-- Nom -->
@@ -75,6 +79,7 @@
                         <i class="fas fa-user mr-2 text-red-600"></i>Nom
                     </label>
                     <input type="text" name="nom" required
+                    value="${donneur.nom}"
                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition"
                            placeholder="Entrez le nom">
                 </div>
@@ -202,7 +207,11 @@
             <div class="flex flex-col sm:flex-row gap-4 pt-6 border-t">
                 <button type="submit"
                         class="flex-1 bg-red-600 text-white py-4 px-6 rounded-lg hover:bg-red-700 transition font-semibold text-lg shadow-lg hover:shadow-xl">
-                    <i class="fas fa-save mr-2"></i>Enregistrer le Donneur
+                    <i class="fas fa-save mr-2"></i>
+<c:choose>
+        <c:when test="${not empty donneur}">Mettre à jour le Donneur</c:when>
+        <c:otherwise>Enregistrer le Donneur</c:otherwise>
+    </c:choose>
                 </button>
                 <a href="donneur?action=list"
                    class="flex-1 bg-gray-500 text-white py-4 px-6 rounded-lg hover:bg-gray-600 transition font-semibold text-lg text-center">

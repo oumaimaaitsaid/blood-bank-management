@@ -33,18 +33,18 @@ public class MatchingService {
 
     //automatiquelly
 
-    public void effectuerMatching(){
-        List<Donneur> donneurs =donneurDAO.findAll();
-        List<Receveur> receveurs =receveurDAO.findAll();
+    public void effectuerMatching() {
+        List<Donneur> donneurs = donneurDAO.findAll();
+        List<Receveur> receveurs = receveurDAO.findAll();
 
-        for(Receveur r : receveurs){
-            if(r.getEtat() == EtatReceveur.SATISFAIT) continue;
-            for(Donneur d : donneurs){
-                if(d.getStatus() ==Disponibilite.DISPONIBLE && estCompatible(d.getGroupe(),r.getGroupe())){
+        for (Receveur r : receveurs) {
+            if (r.getEtat() == EtatReceveur.SATISFAIT) continue;
+            for (Donneur d : donneurs) {
+                if (d.getStatus() == Disponibilite.DISPONIBLE && estCompatible(d.getGroupe(), r.getGroupe())) {
 
                     //creation d association
 
-                    DonationAssociation assoc =new DonationAssociation();
+                    DonationAssociation assoc = new DonationAssociation();
                     assoc.setDonneur(d);
                     assoc.setReceveur(r);
                     assoc.setDateAssociation(LocalDate.now());
@@ -62,4 +62,29 @@ public class MatchingService {
             }
         }
     }
+    public void associerManuellement(int donneurId, int receveurId) {
+        Donneur d = donneurDAO.find(donneurId);
+        Receveur r = receveurDAO.find(receveurId);
+
+        if (d != null && r != null && d.getStatus() == Disponibilite.DISPONIBLE) {
+            DonationAssociation assoc = new DonationAssociation();
+            assoc.setDonneur(d);
+            assoc.setReceveur(r);
+            assoc.setDateAssociation(LocalDate.now());
+            assoc.setStatut("CONFIRMÉ");
+
+            associationDAO.save(assoc);
+
+            // mise à jour des états
+            d.setStatus(Disponibilite.NON_DISPONIBLE);
+            donneurDAO.update(d);
+
+            r.ajouterPoche();
+            receveurDAO.update(r);
+        }
+    }
+
+
+
+
 }

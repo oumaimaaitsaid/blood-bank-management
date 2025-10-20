@@ -61,6 +61,7 @@
                         <th class="px-6 py-4 text-left font-semibold">Téléphone</th>
                         <th class="px-6 py-4 text-left font-semibold">Sexe</th>
                         <th class="px-6 py-4 text-left font-semibold">Poids</th>
+                        <th class="px-6 py-4 text-left font-semibold">receveur_associé</th>
                         <th class="px-6 py-4 text-left font-semibold">Actions</th>
                     </tr>
                 </thead>
@@ -111,7 +112,18 @@
                                     <span class="text-gray-500 text-sm">kg</span>
                                 </div>
                             </td>
-
+<td class="px-6 py-4">
+   <c:if test="${not empty d.receveursAssocies}">
+       <ul>
+           <c:forEach var="r" items="${d.receveursAssocies}">
+               <li>${r.nom} ${r.prenom}</li>
+           </c:forEach>
+       </ul>
+   </c:if>
+   <c:if test="${empty d.receveursAssocies}">
+       <span class="text-gray-400 italic">Aucun receveur associé</span>
+   </c:if>
+</td>
                             <td class="px-6 py-4">
                                 <div class="flex space-x-2">
                                     <a href="donneur?action=edit&id=${d.id}"
@@ -119,11 +131,11 @@
                                        title="Modifier">
                                         <i class="fas fa-edit text-sm"></i>
                                     </a>
-                                    <a href="donneur?action=delete&id=${d.id}"
+                                   <a href="donneur?action=delete&id=${d.id}"
                                        class="w-8 h-8 bg-red-100 text-red-600 rounded flex items-center justify-center hover:bg-red-200 transition"
-                                       onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce donneur ?')"
+                                       onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce receveur ?')"
                                        title="Supprimer">
-                                        <i class="fas fa-trash text-sm"></i>
+                                       <i class="fas fa-trash text-sm"></i>
                                     </a>
                                 </div>
                             </td>

@@ -61,6 +61,7 @@
                         <th class="px-6 py-4 text-left font-semibold">Poches Requises</th>
                         <th class="px-6 py-4 text-left font-semibold">Poches Reçues</th>
                         <th class="px-6 py-4 text-left font-semibold">État</th>
+                        <th class="px-6 py-4 text-left font-semibold">Compatiblité</th>
                         <th class="px-6 py-4 text-left font-semibold">Actions</th>
                     </tr>
                 </thead>
@@ -139,7 +140,19 @@
                                     </c:otherwise>
                                 </c:choose>
                             </td>
+                             <td class="px-6 py-4">
+                             <c:choose>
+                                 <c:when test="${r.etat == 'EN_ATTENTE'}">
+                                     <a href="receveur?action=compatibles&id=${r.id}"
+                                        class="text-red-600 hover:underline">
+                                        Voir donneurs compatibles
+                                     </a>
+                                 </c:when>
 
+                                 <c:otherwise>
+                                     <span class="text-gray-500 italic">Déjà satisfait</span>
+                                 </c:otherwise>
+                             </c:choose>
                             <!-- Actions -->
                             <td class="px-6 py-4">
                                 <div class="flex space-x-2">
