@@ -84,7 +84,7 @@ The Blood Bank Management System is designed to streamline the process of blood 
 
 ### Entity Relationships
 ```
-Account (Abstract Base)
+Personne (Abstract Base)
 ├── Donneur (Blood Donor)
 │   └── Many-to-One → Receveur
 └── Receveur (Blood Recipient)
@@ -96,10 +96,11 @@ Donation
 ```
 
 ### Key Entities
-- **Account**: Base class with common attributes (name, contact, blood type, etc.)
+- **Personne**: Base class with common attributes (name, contact, blood type, etc.)
 - **Donneur**: Blood donors with availability status
 - **Receveur**: Blood recipients with urgency levels
-- **Donation**: Records of blood donations between donors and recipients
+- **Association**: Records of blood donations between donors and recipients
+- **MedicalCondition**
 
 ### Enums
 - **GroupeSanguin**: O+, O-, A+, A-, B+, B-, AB+, AB-
@@ -118,7 +119,7 @@ Donation
 ### Step 1: Database Setup
 ```sql
 -- Create database
-CREATE DATABASE banque_sang_db;
+CREATE DATABASE bank_sang;
 
 -- Create user (optional)
 CREATE USER banque_user WITH PASSWORD 'your_password';
@@ -129,7 +130,7 @@ GRANT ALL PRIVILEGES ON DATABASE banque_sang_db TO banque_user;
 Update `src/main/resources/META-INF/persistence.xml`:
 ```xml
 <property name="jakarta.persistence.jdbc.url" 
-          value="jdbc:postgresql://localhost:5432/banque_sang_db"/>
+          value="jdbc:postgresql://localhost:5433/bank_sang"/>
 <property name="jakarta.persistence.jdbc.user" 
           value="postgres"/>
 <property name="jakarta.persistence.jdbc.password" 
@@ -249,10 +250,8 @@ mvn tomcat7:redeploy
 /donneur          → DonneurServlet
 /receveur         → ReceveurServlet
 /add/receveur     → ReceveurServlet
-/receveur/details → ReceveurDetailsServlet
-/donation         → DonationServlet
+/donation         → AssociationServlet
 /operation/*      → ReceveurServlet
-/assets/*         → Static resources
 ```
 
 ## 📸 Screenshots
@@ -260,20 +259,31 @@ mvn tomcat7:redeploy
 ### Dashboard Overview
 
 ### Donor Registration
-![Donor Form](![<img width="679" height="858" alt="image" src="https://github.com/user-attachments/assets/b5fe37ba-2e6c-4d85-ad1f-04a389e922a1" />]())
+<img width="679" height="858" alt="image" src="https://github.com/user-attachments/assets/3ae0659a-8719-468f-8a5a-749efd68d922" />
+
+### Recipient Registration
+<img width="692" height="617" alt="image" src="https://github.com/user-attachments/assets/1619307a-03da-4d83-80f4-46af13f53ce9" />
+
+
+### List Donor
+![Donor Form]<img width="999" height="292" alt="image" src="https://github.com/user-attachments/assets/0bae29b9-1244-4295-be7f-214380b85e82" />
+
 *Form for registering new blood donors*
 
 ### Recipient Management
-![Recipient List](screenshots/recman.png)
+![Recipient List]<img width="1027" height="427" alt="image" src="https://github.com/user-attachments/assets/089f0161-3639-4a31-9e27-b0e6a65c1335" />
+
 *List of recipients sorted by priority and urgency*
 
 ### Donation Process
-![Donation Form](screenshots/donationform.png)
+![Donation Form]<img width="1660" height="260" alt="image" src="https://github.com/user-attachments/assets/9ce3f1f4-b895-48e5-9045-c0282fa839ca" />
+
 *Interface for matching donors with recipients*
 
 ---
 ### Class diagram
-![Donation Form](uml/blood-banque.jpeg)
+![Donation Form]<img width="1105" height="662" alt="image" src="https://github.com/user-attachments/assets/373cf085-ddf2-48aa-9765-8929b775a885" />
+
 *class diagram for the entire application*
 
 
@@ -292,10 +302,9 @@ mvn tomcat7:redeploy
 mvn test
 
 # Run specific test class
-mvn test -Dtest=DonneurDAOTest
+mvn test -Dtest=DonneurTest
 
-# Generate test coverage report
-mvn jacoco:report
+
 ```
 
 
