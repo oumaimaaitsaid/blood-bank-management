@@ -5,6 +5,7 @@ import com.bloodbank.model.enums.Disponibilite;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,8 +27,10 @@ public class Donneur extends Personne {
     )
 
     private List<MedicalCondition> medicalConditions;
-
-
+    @OneToMany(mappedBy = "receveur", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DonationAssociation> associations = new ArrayList<>();
+    @Transient
+    private List<Receveur> receveursAssocies;
     //-----Méthodes Utils----
 
 
@@ -105,5 +108,6 @@ public class Donneur extends Personne {
         this.medicalConditions = medicalConditions;
     }
 
-
+    public List<Receveur> getReceveursAssocies() { return receveursAssocies; }
+    public void setReceveursAssocies(List<Receveur> receveursAssocies) { this.receveursAssocies = receveursAssocies; }
 }

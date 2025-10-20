@@ -33,6 +33,15 @@
         <servlet-name>MatchingServlet</servlet-name>
         <url-pattern>/matching</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>AssociationServlet</servlet-name>
+        <servlet-class>com.bloodbank.servlet.AssociationServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AssociationServlet</servlet-name>
+        <url-pattern>/association</url-pattern>
+    </servlet-mapping>
 
 
     <!-- =================== Page d'accueil =================== -->

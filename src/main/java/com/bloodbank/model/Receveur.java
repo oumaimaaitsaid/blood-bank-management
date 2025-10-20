@@ -22,7 +22,7 @@ public class Receveur extends  Personne {
     @Enumerated(EnumType.STRING)
     private EtatReceveur etat;
 
-    @OneToMany(mappedBy = "receveur" ,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "receveur", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DonationAssociation> associations = new ArrayList<>();
 
 
@@ -35,11 +35,23 @@ public class Receveur extends  Personne {
     }
 
     public void ajouterPoche(){
-
+try{
+    if(!isSatisfait()){
         this.pochesRecues++;
+        this.pochesRequises--;
         if(isSatisfait()) this.etat=EtatReceveur.SATISFAIT;
     }
+    else{
+        System.out.println("Vous etes déjà satisfait 3lach kat9alb d");
+    }
 
+}
+
+        catch(Exception e){
+    e.printStackTrace();
+
+        }
+    }
 
 
     // ---- Getters & Setters ----

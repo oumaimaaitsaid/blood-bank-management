@@ -6,4 +6,5 @@ public class DonneurDAO  extends BaseDAO<Donneur>{
     public DonneurDAO() {
         super(Donneur.class);
     }
+
 }
